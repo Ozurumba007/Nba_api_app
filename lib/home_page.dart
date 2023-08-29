@@ -30,6 +30,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'NBA TEAMS',
         ),
@@ -43,19 +44,24 @@ class HomePage extends StatelessWidget {
             return ListView.builder(
               itemCount: teams.length,
               itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                  ),
-                  child: ListTile(
-                    title: Text(teams[index].fullName),
-                    subtitle: Text(teams[index].city),
-                    trailing: Text(teams[index].abbreviation),
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                    ),
+                    child: ListTile(
+                      title: Text(teams[index].fullName),
+                      subtitle: Text(teams[index].city),
+                      trailing: Text(teams[index].abbreviation),
+                    ),
                   ),
                 );
               },
             );
           }
+
           // if it's still loading, show loading circle
           else {
             return Center(
