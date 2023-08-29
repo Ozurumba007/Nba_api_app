@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:nba_api_app/model/team.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
@@ -27,6 +28,42 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'NBA TEAMS',
+        ),
+        backgroundColor: Colors.blue[900],
+      ),
+      body: FutureBuilder(
+        future: getTeams(),
+        builder: (context, snapshot) {
+          // is it done loading? then show team data
+          if (snapshot.connectionState == ConnectionState.done) {
+            return ListView.builder(
+              itemCount: teams.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                  ),
+                  child: ListTile(
+                    title: Text(teams[index].fullName),
+                    subtitle: Text(teams[index].city),
+                    trailing: Text(teams[index].abbreviation),
+                  ),
+                );
+              },
+            );
+          }
+          // if it's still loading, show loading circle
+          else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+    );
   }
 }
