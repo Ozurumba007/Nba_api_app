@@ -43,7 +43,16 @@ class HomePage extends StatelessWidget {
             return ListView.builder(
               itemCount: teams.length,
               itemBuilder: (context, index) {
-                return
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                  ),
+                  child: ListTile(
+                    title: Text(teams[index].fullName),
+                    subtitle: Text(teams[index].city),
+                    trailing: Text(teams[index].abbreviation),
+                  ),
+                );
               },
             );
           }
