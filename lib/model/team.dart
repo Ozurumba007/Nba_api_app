@@ -1,7 +1,7 @@
 class Team {
-  final String fullName;
-  final String abbreviation;
-  final String city;
+  final String fullName; // Los Angeles Lakers
+  final String abbreviation; // LAL
+  final String city; // Los Angeles
   Team({
     required this.fullName,
     required this.abbreviation,
